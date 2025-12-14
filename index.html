@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TATU BUSINESS CENTER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-red: #c8102e;
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 2.0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles - UPDATED for logo */
+        header {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text h1 {
+            color: var(--primary-red);
+            font-size: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--primary-white);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--primary-white);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-red);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.493), rgba(0, 0, 0, 0.7)), url('tatucenter.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--primary-white);
+            text-align: center;
+            padding: 8rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #ddd;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary-red);
+        }
+
+        .hero-btn:hover {
+            background-color: transparent;
+            color: var(--primary-red);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background-color: var(--primary-white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-red);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Carousel Styles */
+        .service-img {
+            height: 220px;
+            background-color: var(--primary-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slides {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(200, 16, 46, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.5s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary-red);
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .service-btn:hover {
+            background-color: var(--primary-red);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 4rem 0;
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-white);
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .gallery-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-red);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200, 16, 46, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay span {
+            color: var(--primary-white);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 4rem 0;
+            background-color: var(--primary-white);
+        }
+
+        .location-content {
+            text-align: center;
+        }
+
+        .location-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .location-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-black);
+            margin-bottom: 1rem;
+        }
+
+        .location-info p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .map-btn {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-red);
+        }
+
+        .map-btn:hover {
+            background-color: transparent;
+            color: var(--primary-red);
+        }
+
+        /* Footer - UPDATED with logo */
+        footer {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .footer-column h3 {
+            color: var(--primary-red);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #bbb;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-white);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--dark-gray);
+            border-radius: 50%;
+            color: var(--primary-white);
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+            
+            .hero {
+                padding: 6rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2, .gallery-title h2 {
+                font-size: 2rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text span {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .services-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-img {
+                height: 60px;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - UPDATED with logo -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="Logo5.jpg" alt="TATU BUSINESS CENTER Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>TATU <span>BUSINESS CENTER</span></h1>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Quality Services in One Location</h2>
+            <p>Tatu Business Center offers a complete experience with car wash services, barber shop, bar, and restaurant all in one location. Quality and customer satisfaction are our priorities.</p>
+            <a href="#services" class="hero-btn">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Car Wash Service -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <div class="carousel-container" id="carWashCarousel">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src='carwash1.jpg' alt="Tatu Car Wash Exterior">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'carwash2.jpg' alt="Tatu Car Wash Interior">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'carwash3.jpg' alt="Car Detailing">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'carwash4.jpg' alt="Car Detailing">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'carwash5.jpg' alt="Car Detailing">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots">
+                                <button class="carousel-dot active" data-slide="0"></button>
+                                <button class="carousel-dot" data-slide="1"></button>
+                                <button class="carousel-dot" data-slide="2"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>TATU CAR WASH</h3>
+                        <p>Professional car wash and detailing services to keep your vehicle looking pristine. We offer exterior wash, interior cleaning, and full detailing packages.</p>
+                        <a href="#contact" class="service-btn">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- Barber Shop -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <div class="carousel-container" id="barberCarousel">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src= 'barber1.jpg' alt="Tatu Barber Shop Interior">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'barber2.jpg' alt="Barber at Work">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'barber3.jpg' alt="Modern Barber Shop">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots">
+                                <button class="carousel-dot active" data-slide="0"></button>
+                                <button class="carousel-dot" data-slide="1"></button>
+                                <button class="carousel-dot" data-slide="2"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>TATU BARBER SHOP</h3>
+                        <p>Expert grooming services for men including haircuts, beard trims, and styling. Our barbers are skilled in classic and modern techniques.</p>
+                        <a href="#contact" class="service-btn">Book Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Bar -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <div class="carousel-container" id="barCarousel">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src= 'bar1.jpg' alt="Tatu Bar Interior">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'bar2.jpg' alt="Premium Spirits Selection">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'bar3.jpg' alt="Bar Atmosphere">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'bar4.jpg' alt="Bar Atmosphere">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'bar5.jpg' alt="Bar Atmosphere">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'bar6.jpg' alt="Bar Atmosphere">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots">
+                                <button class="carousel-dot active" data-slide="0"></button>
+                                <button class="carousel-dot" data-slide="1"></button>
+                                <button class="carousel-dot" data-slide="2"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>TATU BAR</h3>
+                        <p>Premium bar serving top brands including Hennessy, Jameson, Jack Daniel's, and more. Enjoy a wide selection of spirits, cocktails, and beer in a sophisticated atmosphere.</p>
+                        <a href="#contact" class="service-btn">View Menu</a>
+                    </div>
+                </div>
+
+                <!-- Restaurant -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <div class="carousel-container" id="restaurantCarousel">
+                            <div class="carousel-slides">
+                                <div class="carousel-slide">
+                                    <img src= 'rest1.jpg' alt="Tatu Restaurant Dining Area">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'rest2.jpg' alt="Restaurant Food">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'rest3.jpg' alt="Chef Preparing Food">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src= 'rest5.jpg' alt="Chef Preparing Food">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots">
+                                <button class="carousel-dot active" data-slide="0"></button>
+                                <button class="carousel-dot" data-slide="1"></button>
+                                <button class="carousel-dot" data-slide="2"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>TATU RESTAURANT</h3>
+                        <p>Delicious meals prepared with fresh ingredients. Our restaurant offers a diverse menu in a comfortable setting perfect for business lunches or casual dinners.</p>
+                        <a href="#contact" class="service-btn">View Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="gallery-title">
+                <h2>Our Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <!-- Car Wash Images -->
+                <div class="gallery-item">
+                    <img src= 'carwash2.jpg' alt="Car Wash">
+                    <div class="gallery-item-overlay">
+                        <span>Car Wash</span>
+                    </div>
+                </div>
+                
+                <!-- Barber Images -->
+                <div class="gallery-item">
+                    <img src= 'barber2.jpg' alt="Barber Shop">
+                    <div class="gallery-item-overlay">
+                        <span>Barber Shop</span>
+                    </div>
+                </div>
+                
+                <!-- Bar Images -->
+                <div class="gallery-item">
+                    <img src= 'bar5.jpg' alt="Premium Bar">
+                    <div class="gallery-item-overlay">
+                        <span>Premium Bar</span>
+                    </div>
+                </div>
+                
+                <!-- Restaurant Images -->
+                <div class="gallery-item">
+                    <img src= 'rest3.jpg' alt="Restaurant">
+                    <div class="gallery-item-overlay">
+                        <span>Restaurant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Location</h2>
+            </div>
+            <div class="location-content">
+                <div class="location-info">
+                    <h3>Find Us Easily</h3>
+                    <p>Visit Tatu Business Center at our convenient location. We're easy to find and accessible for all your service needs.</p>
+                    <a href="https://maps.app.goo.gl/T3jaPFJ8VB5Gf4pr6" target="_blank" class="map-btn">
+                        <i class="fas fa-map-marker-alt"></i> Open in Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - UPDATED with logo -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="logo.jpg" alt="TATU BUSINESS CENTER Logo" class="footer-logo-img">
+                        <h3>TATU BUSINESS CENTER</h3>
+                    </div>
+                    <p>Your one-stop destination for premium car wash, grooming, dining, and entertainment services.</p>
+                    <p>Experience quality and excellence in every service we offer.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <a href="#services">Car Wash Services</a>
+                    <a href="#services">Barber Shop</a>
+                    <a href="#services">Premium Bar</a>
+                    <a href="#services">Restaurant</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/T3jaPFJ8VB5Gf4pr6" target="_blank">View Location on Google Maps</a></p>
+                    <p><i class="fas fa-phone"></i> +254 722 904 893</p>
+                    <p><i class="fas fa-envelope"></i> info@tatubusiness.com</p>
+                    <p><i class="fas fa-clock"></i> Open Daily: 6:00 AM - 11:00 PM</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <p>Stay connected with Tatu Business Center on social media.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61557881157278" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/254722904893" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TATU BUSINESS CENTER. All Rights Reserved. | Designed for Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality for each service
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all carousels
+            const carousels = document.querySelectorAll('.carousel-container');
+            
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelector('.carousel-slides');
+                const slideCount = slides.children.length;
+                const prevBtn = carousel.querySelector('.carousel-btn.prev');
+                const nextBtn = carousel.querySelector('.carousel-btn.next');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                
+                let currentSlide = 0;
+                
+                // Function to update carousel position
+                function updateCarousel() {
+                    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Next button click
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateCarousel();
+                });
+                
+                // Previous button click
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                    updateCarousel();
+                });
+                
+                // Dot click
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateCarousel();
+                    });
+                });
+                
+                // Auto slide every 5 seconds
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateCarousel();
+                }, 5000);
+            });
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+                const nav = document.querySelector('nav ul');
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            // Update nav display on window resize
+            window.addEventListener('resize', function() {
+                const nav = document.querySelector('nav ul');
+                if (window.innerWidth > 768) {
+                    nav.style.display = 'flex';
+                } else {
+                    nav.style.display = 'none';
+                }
+            });
+
+            // Initialize nav display
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('nav ul').style.display = 'none';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active class to current nav item
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
